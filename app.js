@@ -1,14 +1,32 @@
+var User = /** @class */ (function () {
+    //   name: string;
+    //   private age: number;
+    function User(name, age) {
+        this.name = name;
+        this.age = age;
+        // this.name = name;
+        // this.age = age;
+    }
+    return User;
+}());
+var user = new User('Alex', 35);
+console.log(user);
 var num1Input = document.getElementById('num1');
 var num2Input = document.getElementById('num2');
 var buttonElement = document.querySelector('button');
 var results = [];
 var add = function (a, b) { return a + b; };
+var PrintMode;
+(function (PrintMode) {
+    PrintMode[PrintMode["CONSOLE"] = 0] = "CONSOLE";
+    PrintMode[PrintMode["ALERT"] = 1] = "ALERT";
+})(PrintMode || (PrintMode = {}));
 var printResult = function (result, printMode) {
     switch (printMode) {
-        case 'console':
+        case PrintMode.CONSOLE:
             console.log(result);
             break;
-        case 'alert':
+        case PrintMode.ALERT:
             alert(result);
             break;
     }
@@ -26,8 +44,8 @@ buttonElement === null || buttonElement === void 0 ? void 0 : buttonElement.addE
                 },
             };
             results.push(resultContainer);
-            printResult(resultContainer.res, 'console');
-            printResult(resultContainer.res, 'alert');
+            printResult(resultContainer.res, PrintMode.CONSOLE);
+            printResult(resultContainer.res, PrintMode.ALERT);
         }
         else {
             console.error('Please enter valid numbers in both input fields.');

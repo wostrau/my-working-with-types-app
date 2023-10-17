@@ -1,9 +1,43 @@
+interface Greetable {
+  name: string;
+}
+
+interface Printable {
+  print(): void;
+}
+
+class User implements Greetable, Printable {
+  //   name: string;
+  //   private age: number;
+
+  constructor(public name: string, private age: number) {
+    // this.name = name;
+    // this.age = age;
+  }
+
+  print() {
+    console.log(this.name);
+  }
+}
+
+const user = new User('Alex', 35);
+console.log(user);
+
+class Admin extends User {
+  constructor(name: string, age: number, private permissions: string[]) {
+    super(name, age);
+  }
+}
+
 const num1Input = document.getElementById('num1') as HTMLInputElement;
 const num2Input = <HTMLInputElement>document.getElementById('num2');
 const buttonElement = document.querySelector('button');
 
-type CalculationResult = { res: number; print: () => void };
-const results: Array<CalculationResult> = [];
+interface CalculationContainer {
+  res: number;
+  print(): void;
+}
+const results: CalculationContainer[] = [];
 
 const add = (a: number, b: number) => a + b;
 
