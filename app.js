@@ -1,27 +1,36 @@
-var User = /** @class */ (function () {
+"use strict";
+class User {
     //   name: string;
     //   private age: number;
-    function User(name, age) {
+    constructor(name, age) {
         this.name = name;
         this.age = age;
         // this.name = name;
         // this.age = age;
     }
-    return User;
-}());
-var user = new User('Alex', 35);
+    print() {
+        console.log(this.name);
+    }
+}
+const user = new User('Alex', 35);
 console.log(user);
-var num1Input = document.getElementById('num1');
-var num2Input = document.getElementById('num2');
-var buttonElement = document.querySelector('button');
-var results = [];
-var add = function (a, b) { return a + b; };
+class Admin extends User {
+    constructor(name, age, permissions) {
+        super(name, age);
+        this.permissions = permissions;
+    }
+}
+const num1Input = document.getElementById('num1');
+const num2Input = document.getElementById('num2');
+const buttonElement = document.querySelector('button');
+const results = [];
+const add = (a, b) => a + b;
 var PrintMode;
 (function (PrintMode) {
     PrintMode[PrintMode["CONSOLE"] = 0] = "CONSOLE";
     PrintMode[PrintMode["ALERT"] = 1] = "ALERT";
 })(PrintMode || (PrintMode = {}));
-var printResult = function (result, printMode) {
+const printResult = (result, printMode) => {
     switch (printMode) {
         case PrintMode.CONSOLE:
             console.log(result);
@@ -31,15 +40,15 @@ var printResult = function (result, printMode) {
             break;
     }
 };
-buttonElement === null || buttonElement === void 0 ? void 0 : buttonElement.addEventListener('click', function () {
+buttonElement === null || buttonElement === void 0 ? void 0 : buttonElement.addEventListener('click', () => {
     if (num1Input && num2Input) {
-        var num1Value = Number(num1Input.value);
-        var num2Value = Number(num2Input.value);
+        const num1Value = Number(num1Input.value);
+        const num2Value = Number(num2Input.value);
         if (!isNaN(num1Value) && !isNaN(num2Value)) {
-            var result = add(num1Value, num2Value);
-            var resultContainer = {
+            const result = add(num1Value, num2Value);
+            const resultContainer = {
                 res: result,
-                print: function () {
+                print() {
                     console.log(this.res);
                 },
             };
@@ -52,3 +61,11 @@ buttonElement === null || buttonElement === void 0 ? void 0 : buttonElement.addE
         }
     }
 });
+const logAndEcho = (val) => {
+    console.log(val);
+    return val;
+};
+const strResult = logAndEcho('Hi there!').split(' ');
+const numResult = logAndEcho(42).toFixed(2);
+console.log(strResult);
+console.log(numResult);

@@ -31,13 +31,13 @@ class Admin extends User {
 
 const num1Input = document.getElementById('num1') as HTMLInputElement;
 const num2Input = <HTMLInputElement>document.getElementById('num2');
-const buttonElement = document.querySelector('button');
+const buttonElement = document.querySelector('button')!;
 
-interface CalculationContainer {
+type CalculationContainer = {
   res: number;
   print(): void;
-}
-const results: CalculationContainer[] = [];
+};
+const results: Array<CalculationContainer> = [];
 
 const add = (a: number, b: number) => a + b;
 
@@ -56,7 +56,7 @@ const printResult = (result: string | number, printMode: PrintMode) => {
   }
 };
 
-buttonElement?.addEventListener('click', () => {
+buttonElement.addEventListener('click', () => {
   if (num1Input && num2Input) {
     const num1Value = Number(num1Input.value);
     const num2Value = Number(num2Input.value);
@@ -79,3 +79,14 @@ buttonElement?.addEventListener('click', () => {
     }
   }
 });
+
+const logAndEcho = <T>(val: T) => {
+  console.log(val);
+  return val;
+};
+
+const strResult = logAndEcho<string>('Hi there!').split(' ');
+const numResult = logAndEcho<number>(42).toFixed(2);
+
+console.log(strResult);
+console.log(numResult);
